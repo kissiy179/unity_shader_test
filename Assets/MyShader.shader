@@ -1,4 +1,7 @@
 ﻿Shader "Custom/MyShader" {
+	properties{
+		_Color("Diffuse Color", Color) = (1.0, 1.0, 1.0)
+	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 
@@ -8,9 +11,10 @@
 		struct Input {
 			float4 color: COLOR;
 		};
+		float4 _Color;
 
 		void surf (Input IN, inout SurfaceOutput o) {
-			o.Albedo = half3(1.0,0.5,0.4);
+			o.Albedo = _Color.rgb;
 		}
 		ENDCG
 	}
