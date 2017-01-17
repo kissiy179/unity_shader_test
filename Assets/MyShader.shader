@@ -5,12 +5,12 @@
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		CGPROGRAM
-		#pragma surface surf Original
-		half4 LightingOriginal(SurfaceOutput s, half3 lightDir, half atten){
+		#pragma surface surf Test
+		half4 LightingTest(SurfaceOutput s, half3 lightDir, half atten){
 			half diff = dot(s.Normal, lightDir);
-			if(diff < 0) diff = 0;
+			diff = frac(diff * 10);
 			half4 c;
-			c.rgb = s.Albedo * _LightColor0.rgb * (diff * atten * 2);
+			c.rgb = s.Albedo * _LightColor0.rgb * diff * 2;
 			c.a = s.Alpha;
 			return c;
 		}
