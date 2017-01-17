@@ -6,7 +6,7 @@
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		CGPROGRAM
-		#pragma surface surf Test
+		#pragma surface surf Test alpha
 		struct Input{
 			float4 color: COLOR;
 		};
@@ -16,9 +16,10 @@
 			half diff = max(0, dot(s.Normal, lightDir));
 			half spec = max(0, dot(s.Normal, normalize(lightDir + viewDir)));
 			spec = pow(spec, _Specular);
+			half trans = 1.0 - max(0, dot(s.Normal, viewDir)) + spec;
 			half4 c;
 			c.rgb = (s.Albedo * _LightColor0.rgb * diff + _LightColor0.rgb * spec / 2) * (atten * 2);
-			c.a = s.Alpha;
+			c.a = trans;
 			return c;
 		}
 
