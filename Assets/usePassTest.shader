@@ -4,6 +4,6 @@ Shader "Custom/usePassTest" {
         _MainTex ("Main Texture", 2D) = "white" {}
     }
     SubShader {
-        UsePass "Custom/coloredLighting/BASE"
+        UsePass "Custom/texturedLighting/BASE"
     }
 }
